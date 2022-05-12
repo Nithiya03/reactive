@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup,FormControl, Validators,FormArray} from '@angular/forms'
+import {FormGroup,FormControl, Validators,FormArray, FormBuilder} from '@angular/forms'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,25 +7,20 @@ import {FormGroup,FormControl, Validators,FormArray} from '@angular/forms'
 })
 export class AppComponent implements OnInit{
   title = 'reactive';
+  isUserCreated:boolean = false;
   loginform!: FormGroup;
-  constructor(){}
+  constructor(private fb:FormBuilder){}
   ngOnInit(): void {
-    this.loginform = new FormGroup({
-      user:new FormControl('',[Validators.required]),
-      password:new FormControl('',[Validators.required]),
-      skill:new FormGroup({
-        skillName: new FormControl(),
-        experience:new FormControl()
-      })
+    this.loginform = this.fb.group({
+      user:['',[Validators.required]],
+      password:['',[Validators.required]],
     });
-  }
+  } 
   loginUser(){ 
+    this.isUserCreated = true;
     console.warn(this.loginform.value);
-    console.log(this.loginform.touched);
-    console.log(this.loginform.value);
-
-    console.log(this.loginform.dirty);
   }
+
   // addPhone(){
     
   get user(){

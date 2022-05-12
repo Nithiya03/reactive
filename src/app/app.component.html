@@ -9,23 +9,15 @@
   <div class="formData">
   <form  [formGroup] = "loginform" (ngSubmit)="loginUser()">
     <label><h3>UserName</h3></label>
-    <input type="text" placeholder="Enter username" pattern="^[a-zA-Z]{5,}$"  formControlName="user">
+      <input type="text" placeholder="Enter username" pattern="^[a-zA-Z]{5,}$"  formControlName="user">
     <br>
-    <span *ngIf="user && user.invalid && user.touched" style="color: red;">UserName is required</span><br>
-    <label ><h3>Password</h3></label>
-    <input type="password" placeholder="Enter password" pattern="^([A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" formControlName="password">
-    <br><span *ngIf="password && password.invalid && password.touched" style="color: red;">password is Minimum eight characters, at least one letter and one number:
-    <!-- <button (click)="addPhone()">Add PhoneNumber</button> -->
-    </span><br><br>
-    <button class="btn">Add Skill</button><br>
-    <div formControlName="skill">
-      <label><h3>Skill</h3></label>
-        <input type="text" id="skills" formControlName="skillName"> 
-        <label><h3>Experience</h3></label>
-        <input type="text" id="skills" formControlName="experience"> 
-    </div><br>
-    <button class="btn"[disabled]="loginform.invalid">Login</button>
+      <span *ngIf="user && user.invalid && user.touched" style="color: red;">UserName is required</span><br>
+      <label ><h3>Password</h3></label>
+      <input type="password" placeholder="Enter password" pattern="^([A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" formControlName="password">
+      <br><span *ngIf="password && password.invalid && password.touched" style="color: red;">password is Minimum eight characters, at least one letter and one number:</span>
+    <!-- <button (click)="addPhone()">Add PhoneNumber</button> -->  
+    <br><br>
+      <button class="btn"[disabled]="loginform.invalid" (click)="loginUser()">Login</button>
+      <br>
+      <div *ngIf="isUserCreated" class="bg-success">User Added successfully</div>
   </form>
-  </div>
-  
-</div>
